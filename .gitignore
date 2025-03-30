@@ -172,3 +172,16 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+# TEST IN JUPTER NOTEBOOK
+input/
+output/
+runs/
+*.pt
+*.jpg
+*.png
+*.onnx
+*.mp4
+coco8.yaml
+coco128.yaml
