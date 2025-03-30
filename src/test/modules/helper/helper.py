@@ -1,5 +1,5 @@
-import cv2
 import os
+import cv2
 
 # FUNÇÃO PRA CRIAR VIDEO DE SAIDA
 def create_video_from_images(image_folder, output_video_path, frame_rate):

@@ -178,6 +178,7 @@ cython_debug/
 input/
 output/
 runs/
+venv - Copia/
 *.pt
 *.jpg
 *.png
