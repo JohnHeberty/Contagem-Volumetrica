@@ -7,6 +7,9 @@
 # You can add other services your application may depend on here, such as a
 # database or a cache. For examples, see the Awesome Compose repository:
 # https://github.com/docker/awesome-compose
+
+version: "3.8"
+
 services:
 
   # server:
@@ -27,6 +30,60 @@ services:
       - LABEL_STUDIO_USERNAME=admin
       - LABEL_STUDIO_PASSWORD=admin123
     restart: unless-stopped
+    networks:
+      - contagem_volumetrica_network
+
+  yolo: # NOT WORK IF YOU NOT RUN BUILD IN 'src\label-image\ml\yolo'
+    container_name: yolo
+    image: humansignal/yolo:v0
+    environment:
+      # specify these parameters if you want to use basic auth for the model server
+      - BASIC_AUTH_USER=
+      - BASIC_AUTH_PASS=
+      # set the log level for the model server
+      - LOG_LEVEL=DEBUG
+      # any other parameters that you want to pass to the model server
+      - ANY=PARAMETER
+      # specify the number of workers and threads for the model server
+      - WORKERS=1
+      - THREADS=8
+      # specify the model directory (likely you don't need to change this)
+      - MODEL_DIR=/data/models
+      - PYTHONPATH=/app
+
+      # Specify the Label Studio URL and API key to access
+      # uploaded, local storage and cloud storage files.
+      # Do not use 'localhost' or '127.0.0.1' as it does not work within Docker containers.
+      # Use prefix 'http://' or 'https://' for the URL always.
+      # Determine the actual IP using 'ifconfig' (Linux/Mac) or 'ipconfig' (Windows).
+      # or you can try http://host.docker.internal:<label-studio-port> if you run LS on the same machine
+      - LABEL_STUDIO_URL=http://labelstudio:8080
+      - LABEL_STUDIO_API_KEY=416b63b529c0b6a202c8205b19a66aa0257e6312
+
+      # YOLO parameters
+
+      # Allow to use custom `model_path` in labeling configurations
+      - ALLOW_CUSTOM_MODEL_PATH=true
+      # Show matplotlib debug plot for YOLO predictions
+      - DEBUG_PLOT=false
+      # Default score threshold, which is used to filter out low-confidence predictions,
+      # you can change it in the labeling configuration using `model_score_threshold` parameter in the control tags
+      - MODEL_SCORE_THRESHOLD=0.5
+      # Model root directory, where the YOLO model files are stored
+      - MODEL_ROOT=/app/models
+    ports:
+      - "9090:9090"
+    volumes:
+      - "./label-image/ml/yolo/data/server:/data"
+      - "./label-image/ml/yolo/data/models:/app/models"
+      - "./label-image/ml/yolo/data/cache_dir:/app/cache_dir"
+    restart: unless-stopped
+    networks:
+      - contagem_volumetrica_network
+
+networks:
+  contagem_volumetrica_network:
+    name: contagem_volumetrica_network
 
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to

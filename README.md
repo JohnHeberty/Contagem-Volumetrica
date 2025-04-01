@@ -66,16 +66,21 @@ Após iniciar o serviço, siga estes passos:
 1. **Crie um novo projeto** no Label Studio com a seguinte configuração de anotação:
 
    ```html
-   <View>
-     <Image name="image" value="$image"/>
-     <RectangleLabels name="label" toName="image" model_score_threshold="0.25">
-       <Label value="Car" background="blue" predicted_values="jeep,cab,limousine,truck"/>
-     </RectangleLabels>
-   </View>
+    <View>
+      <Image name="image" value="$image"/>
+      <RectangleLabels name="label" toName="image" model_score_threshold="0.1">
+        <Label value="person" background="#9effa5" predicted_values="person"/>
+        <Label value="car" background="#FFA39E" predicted_values="limousine,minivan,jeep,sports_car,passenger_car,police_van,car"/>
+        <Label value="bus" background="#d0d30d" predicted_values="bus"/>
+        <Label value="motorcycle" background="#FFC069" predicted_values="motorcycle"/>
+        <Label value="van" background="#AD8B00"	predicted_values="van"/>
+        <Label value="truck" background="#D3F261" predicted_values="truck"/>
+      </RectangleLabels>
+    </View>
    ```
 
 2. **Conecte o modelo** na página de Model do projeto. Utilize a URL padrão:  
-   `http://localhost:9090`
+   `http://yolo:9090`
 
 3. **Adicione as imagens ou vídeos** (dependendo das tarefas que deseja resolver) no Label Studio.
 
