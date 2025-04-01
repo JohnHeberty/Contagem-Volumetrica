@@ -47,7 +47,7 @@ RUN --mount=type=cache,target=${PIP_CACHE_DIR},sharing=locked \
 
 WORKDIR /app
 
-COPY . ./
+COPY . .
 
 # Download the YOLO models
 RUN /bin/sh -c 'if [ ! -f /app/models/yolov8m.pt ]; then \
@@ -59,4 +59,6 @@ RUN /bin/sh -c 'if [ ! -f /app/models/yolov8m.pt ]; then \
 
 ENV PYTHONPATH=/app
 
-CMD ["/app/start.sh"]
+# Start the server
+RUN chmod +x start.sh
+CMD ["bash", "start.sh"]

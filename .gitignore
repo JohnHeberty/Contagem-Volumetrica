@@ -176,6 +176,7 @@ cython_debug/
 
 # TEST IN JUPTER NOTEBOOK
 *.sqlite3
+*.db
 input/
 output/
 runs/
