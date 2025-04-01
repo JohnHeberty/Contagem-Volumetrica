@@ -22,7 +22,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./src/label-studio:/label-studio/data
+      - ./src/label-image/studio:/label-studio/data
     environment:
       - LABEL_STUDIO_USERNAME=admin
       - LABEL_STUDIO_PASSWORD=admin123

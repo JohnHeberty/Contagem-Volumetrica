@@ -175,6 +175,7 @@ cython_debug/
 
 
 # TEST IN JUPTER NOTEBOOK
+cache_dir/
 *.sqlite3
 *.db
 input/
