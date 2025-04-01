@@ -34,12 +34,17 @@ O projeto está organizado da seguinte forma:
 
 ```
 Contagem-Volumetrica/
-├── src/
-│   └── label-image/
-│       └── ml/
-│           └── yolo/         # Diretório com os scripts e modelos YOLO
-├── docker-compose.yml        # Arquivo para subir os serviços com Docker
-└── README.md                 # Este arquivo
+├── docker-compose.yml         # Arquivo de configuração do Docker Compose para levantar os serviços
+├── README.md                  # Este arquivo de documentação
+├── requirements.txt           # Dependências específicas para rodar frame-work
+└── src/
+    └── label-image/
+        ├── studio/            # Configurações e dados para o Label Studio
+        └── ml/
+            └── yolo/          # Scripts, modelos e arquivos relacionados ao YOLO
+                ├── data/      # Dados utilizados pelo modelo (ex: imagens, vídeos, caches)
+                ├── models/    # Arquivos de modelos YOLO (ex: yolov8n.pt, etc.)
+                └── ...        # Outros scripts e arquivos de suporte
 ```
 
 ### 2. Configuração do Label Studio

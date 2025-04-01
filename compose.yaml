@@ -74,9 +74,9 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - "./label-image/ml/yolo/data/server:/data"
-      - "./label-image/ml/yolo/data/models:/app/models"
-      - "./label-image/ml/yolo/data/cache_dir:/app/cache_dir"
+      - "./src/label-image/ml/yolo/data/server:/data"
+      - "./src/label-image/ml/yolo/data/models:/app/models"
+      - "./src/label-image/ml/yolo/data/cache_dir:/app/cache_dir"
     restart: unless-stopped
     networks:
       - contagem_volumetrica_network
