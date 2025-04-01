@@ -8,11 +8,25 @@
 # database or a cache. For examples, see the Awesome Compose repository:
 # https://github.com/docker/awesome-compose
 services:
-  server:
-    build:
-      context: .
+
+  # server:
+  #   build:
+  #     context: .
+  #   ports:
+  #     - 8000:8000
+
+  labelstudio:
+    # UP TO ML MODEL >> https://github.com/HumanSignal/label-studio-ml-backend 
+    image: heartexlabs/label-studio:latest
+    container_name: labelstudio
     ports:
-      - 8000:8000
+      - "8080:8080"
+    volumes:
+      - ./src/label-studio:/label-studio/data
+    environment:
+      - LABEL_STUDIO_USERNAME=admin
+      - LABEL_STUDIO_PASSWORD=admin123
+    restart: unless-stopped
 
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to

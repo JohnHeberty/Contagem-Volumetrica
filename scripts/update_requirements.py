@@ -12,7 +12,7 @@ result = subprocess.run(["pip", "freeze"], capture_output=True, text=True)
 with requirements_path.open("w") as f:
     for line in result.stdout.splitlines():
         if "@ file:" not in line:
-            f.write(line + "\n")
+            f.write(line.replace("+cu118", " # +cu118") + "\n")
 
 # Adiciona o arquivo ao git
 subprocess.run(["git", "add", str(requirements_path)])

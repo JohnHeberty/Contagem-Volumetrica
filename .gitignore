@@ -175,10 +175,12 @@ cython_debug/
 
 
 # TEST IN JUPTER NOTEBOOK
+*.sqlite3
 input/
 output/
 runs/
-venv - Copia/
+venv_BK/
+venv_legacy/
 *.pt
 *.jpg
 *.png
