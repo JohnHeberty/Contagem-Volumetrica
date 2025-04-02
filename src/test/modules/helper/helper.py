@@ -27,6 +27,12 @@ def create_video_from_images(image_folder, output_video_path, frame_rate):
         frame = cv2.imread(image_path)
         video.write(frame)
 
+    # Comprimir o tamanho do vídeo
+    try:
+        os.system(f"ffmpeg -i {output_video_path} -c:v libx264 -crf 23 -preset veryslow -movflags +faststart -c:a aac -b:a 128k {output_video_path}")
+    except Exception as e:
+        pass
+
     # Liberar o objeto VideoWriter
     video.release()
     print(f"Vídeo criado com sucesso: {output_video_path}")
