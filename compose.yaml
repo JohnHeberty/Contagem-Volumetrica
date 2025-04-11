@@ -8,7 +8,7 @@
 # database or a cache. For examples, see the Awesome Compose repository:
 # https://github.com/docker/awesome-compose
 
-version: "3.8"
+# version: "3.8"
 
 services:
 
@@ -18,8 +18,8 @@ services:
   #   ports:
   #     - 8000:8000
 
+  # PROJECT >> https://github.com/HumanSignal/label-studio
   labelstudio:
-    # UP TO ML MODEL >> https://github.com/HumanSignal/label-studio-ml-backend 
     image: heartexlabs/label-studio:latest
     container_name: labelstudio
     ports:
@@ -33,6 +33,7 @@ services:
     networks:
       - contagem_volumetrica_network
 
+  # PROJECT >> https://github.com/HumanSignal/label-studio-ml-backend 
   yolo: # NOT WORK IF YOU NOT RUN BUILD IN 'src\label-image\ml\yolo'
     container_name: yolo
     image: humansignal/yolo:v0
